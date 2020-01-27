@@ -5,3 +5,8 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # gem "rails"
+
+ruby '2.5.1'
+gem 'rspec'
+gem 'rubocop', '~> 0.57.2'
+gem 'pry'
