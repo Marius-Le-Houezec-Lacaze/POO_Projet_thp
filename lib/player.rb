@@ -25,10 +25,10 @@ class Player
 
   def attacks(player)
     degat = self.compute_damage
-    puts "#{@name} a attaquer #{player}"
+    puts "#{@name} a attaquer #{player.name}"
     puts "Il lui inflige #{degat} point de dommage"
     @@status.each do |play|
-      (play.name == player) ? 
+      (play.name == player.name) ? 
       (play.gets_damage(degat)):
       nil
     end
@@ -55,9 +55,9 @@ class HumanPlayer < Player
   def search_weapon
     dice = rand(1..6)
     puts "tu a trouver une arme de nivearux #{dice}}"
-    if (dice > weapon_level)
+    if (dice > @weapon_level)
       puts "Youhou ! elle est meilleure que ton arme actuelle : tu la prends."
-      weapon_level = dice
+      @weapon_level = dice
     else
       puts "M@*#$... elle n'est pas mieux que ton arme actuelle..."
     end
@@ -70,11 +70,11 @@ class HumanPlayer < Player
       puts "Tu n'as rien trouver"
     when (2..5)
       @life_points += 50
-      @life_points.clamp(0..100)
+      @life_points = @life_points.clamp(0, 100)
     when 6
       puts "Waow, tu as trouvé un pack de +80 points de vie !"
       @life_points += 80
-      @life_points.clamp(0..100)
+      @life_points = @life_points.clamp(0, 100)
     end
   end
 
