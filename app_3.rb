@@ -7,7 +7,7 @@ require_relative 'lib/player'
 
 puts "Rentre ton nom"
 print ">"
-my_game = Game.new(gets.chomp, 1)
+my_game = Game.new(gets.chomp)
 
 while(my_game.is_still_ongoing? == true)
   my_game.show_player
