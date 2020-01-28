@@ -11,9 +11,14 @@ puts "
 |Le but du jeu est d'être le dernier survivant !|
 -------------------------------------------------"
 
+enemie =[]
+
 player1 = Player.new("José")
 player2 = Player.new("Josiane")
 user = HumanPlayer.new("Joueur")
+
+enemie << player1
+enemie << player1
 
 while user.life_points >0 && (player1.life_points > 0 || player2.life_points >0)
   puts "Point de vie : #{user.life_points}"
@@ -49,9 +54,18 @@ while user.life_points >0 && (player1.life_points > 0 || player2.life_points >0)
   end
   puts
   puts "Les autres joueurs t'attaquent !"
-  player1.attacks(user)
-  puts
-  player2.attacks(user)
-  puts
+  enemie.each do |en|
+    en.attacks(user)
+    (user.life_points <= 0)?
+    (puts "Le joueur a perdu"; break):
+    nil
+    puts
+  end
+end
+
+if user.life_points <= 0
+  puts "Dommage vous avez PERDU !!"
+elsif player1.life_points <= 0 && player2.life_points <= 0
+  puts "Felicitation vous avez GAGNER !!"
 end
 binding.pry

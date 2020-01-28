@@ -1,11 +1,11 @@
 class Player 
-  attr_accessor :life_points, :name, :status
-  @@status = []
+  attr_accessor :life_points, :name, :enemies
+  @@enemies = []
 
   def initialize(nom)
     @name = nom.to_s
     @life_points = 10
-    @@status << self
+    @@enemies << self
   end
 
   def show_state
@@ -27,7 +27,7 @@ class Player
     degat = self.compute_damage
     puts "#{@name} a attaquer #{player.name}"
     puts "Il lui inflige #{degat} point de dommage"
-    @@status.each do |play|
+    @@enemies.each do |play|
       (play.name == player.name) ? 
       (play.gets_damage(degat)):
       nil
@@ -41,7 +41,7 @@ class HumanPlayer < Player
     @name = nom.to_s
     @weapon_level = 1
     @life_points = 100
-    @@status << self
+    @@enemies << self
   end
 
   def show_state
@@ -54,12 +54,12 @@ class HumanPlayer < Player
 
   def search_weapon
     dice = rand(1..6)
-    puts "tu a trouver une arme de nivearux #{dice}}"
+    puts "tu a trouver une arme de nivearux #{dice}"
     if (dice > @weapon_level)
-      puts "Youhou ! elle est meilleure que ton arme actuelle : tu la prends."
+      puts "Youhou ! elle est meilleure que ton arme actuelle : tu la prends.\n\n"
       @weapon_level = dice
     else
-      puts "M@*#$... elle n'est pas mieux que ton arme actuelle..."
+      puts "M@*#$... elle n'est pas mieux que ton arme actuelle...\n\n"
     end
   end
 
@@ -77,5 +77,4 @@ class HumanPlayer < Player
       @life_points = @life_points.clamp(0, 100)
     end
   end
-
 end
