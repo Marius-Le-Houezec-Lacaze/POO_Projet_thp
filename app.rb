@@ -28,5 +28,6 @@ loop do
   player2.show_state
   puts
 end
-
-binding.pry
+(player1.life_points > 0)? 
+(puts "\n José a gagner le combat"): 
+(puts "\n Josianne a gagner le combat")

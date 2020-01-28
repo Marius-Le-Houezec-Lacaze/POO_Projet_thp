@@ -4,11 +4,11 @@ require_relative 'player'
 class Game
   attr_accessor :human_player, :enemies_in_sight, :user, :players_left, :mechant
   def initialize(name, left = 10)
-    @players_left = left
+    @players_left = left - 1
     @human_player = []
     @enemies_in_sight = []
     @user = HumanPlayer.new(name)
-    @mechant = Player.new("mechant numero #{rand(1..100)}")
+    @mechant = Player.new("Detenue matricule ##{rand(1000..4000)}")
     @human_player << user
     @enemies_in_sight << @mechant
   end
@@ -18,13 +18,13 @@ class Game
   def show_player
     puts 
     puts "Voicie tes point de vie : #{@human_player[0].life_points}\n"
-    puts "Il reste #{@players_left} enemie \n"
+    puts "Il reste #{@players_left} enemie hors porter \n"
   end
   def menu
     i = 0
     puts
     puts "a - Pours chercher une nouvelle arme"
-    puts "s - Pour rechercher un pack de soin\n\n"
+    puts "s - Pour rechercher un pack de soin\n"
     while i < @enemies_in_sight.size
       print "#{i} - #{@enemies_in_sight[i].name} a #{@enemies_in_sight[i].life_points} point de vie|"
       i += 1
@@ -33,23 +33,23 @@ class Game
   end
   def new_players_in_sight
     dice = rand(1..6)
-    if enemies_in_sight.size <= @players_left && @players_left > 0
+    if enemies_in_sight.size < @players_left && @players_left > 0
     
      if dice == 1
-       puts "Aucun nouvelle enemie"
+       puts "Aucun nouvelle enemie \n >"
      elsif (dice < 5 && dice > 1)
-       @mechant = Player.new("mechant numero #{rand(1..100)}")
+       @mechant = Player.new("Detenu matricule ##{rand(1..100)}")
        @enemies_in_sight << @mechant
        @players_left -= 1
      elsif (dice == 6)
        2.times do
-         @mechant = Player.new("mechant numero #{rand(1..100)}")
+         @mechant = Player.new("Detenu matricule ##{rand(1..100)}")
          @enemies_in_sight << @mechant
        end
        @players_left -= 2
      end
     else
-      puts "\nAucun Nouvelle enemie"
+      puts "Aucun Nouvelle enemie\n >"
     end
   end
   def menu_choice(num)
@@ -82,8 +82,3 @@ class Game
     end
   end
 end
-
-=begin
-
-=end
-

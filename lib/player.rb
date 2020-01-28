@@ -26,7 +26,7 @@ class Player
   def attacks(player)
     degat = self.compute_damage
     puts "#{@name} a attaquer #{player.name}"
-    puts "Il lui inflige #{degat} point de dommage"
+    puts "Il lui inflige #{degat} point de dommages"
     @@enemies.each do |play|
       (play.name == player.name) ? 
       (play.gets_damage(degat)):
@@ -54,7 +54,7 @@ class HumanPlayer < Player
 
   def search_weapon
     dice = rand(1..6)
-    puts "tu a trouver une arme de nivearux #{dice}"
+    puts "Genial tu a trouver une arme de niveaux #{dice}"
     if (dice > @weapon_level)
       puts "Youhou ! elle est meilleure que ton arme actuelle : tu la prends.\n\n"
       @weapon_level = dice

@@ -68,4 +68,3 @@ if user.life_points <= 0
 elsif player1.life_points <= 0 && player2.life_points <= 0
   puts "Felicitation vous avez GAGNER !!"
 end
-binding.pry
